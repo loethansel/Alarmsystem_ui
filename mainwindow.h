@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "qlocalsocket.h"
 #include "ctrlfile.h"
-//#include <QTimer>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -17,14 +17,18 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+public slots:
+    void ConfigurationTimerHandler();
+    void SocketTimerHandler();
+    void SocketConnectedHandler();
+    void SocketDisconnectedHandler();
 private:
     Ui::MainWindow *ui;
-    int timerId;
+    QTimer *k_timer;
+    QTimer *s_timer;
     QLocalSocket *socket;
     CtrlFile     *ctrlfile;
 protected:
-    void timerEvent(QTimerEvent *event);
     void receivedMessage();
 };
 

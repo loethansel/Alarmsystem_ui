@@ -32,25 +32,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>706</y>
-      <width>281</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Ip-address: 192.168.178.114</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="datetime">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -508,7 +490,7 @@
       </font>
      </property>
      <property name="text">
-      <string>5,62°C</string>
+      <string>5,63°C</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -979,10 +961,10 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>692</y>
-      <width>271</width>
-      <height>41</height>
+      <x>730</x>
+      <y>690</y>
+      <width>291</width>
+      <height>50</height>
      </rect>
     </property>
     <property name="text">
@@ -1826,13 +1808,30 @@
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="ipaddress">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>706</y>
+      <width>281</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ip-address: 192.168.178.114</string>
+    </property>
+   </widget>
    <zorder>groupBox_4</zorder>
    <zorder>groupBox_3</zorder>
    <zorder>groupBox_2</zorder>
    <zorder>groupBox</zorder>
    <zorder>line</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
+   <zorder>datetime</zorder>
    <zorder>label_4</zorder>
    <zorder>systemprogramm</zorder>
    <zorder>label_6</zorder>
@@ -1846,6 +1845,7 @@
    <zorder>label_10</zorder>
    <zorder>xbeemodul</zorder>
    <zorder>label_3</zorder>
+   <zorder>ipaddress</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -1853,7 +1853,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
@@ -1869,8 +1869,8 @@
      <rect>
       <x>412</x>
       <y>142</y>
-      <width>248</width>
-      <height>158</height>
+      <width>213</width>
+      <height>163</height>
      </rect>
     </property>
     <property name="font">
