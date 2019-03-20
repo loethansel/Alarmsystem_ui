@@ -6,10 +6,8 @@
 using namespace std;
 // DEFINES
 // xx SekundenCheck des GSM-Moduls
-#define NUMBERFILE     "/home/debian/Alarmsystem/files/gsm_number.txt"
-#define MSGFILE        "/home/debian/Alarmsystem/files/gsm_alarmmsg.txt"
+#define LOGFILENAME    "/home/debian/Alarmsystem/files/alarm.log"
 #define ARMEDFILE      "/home/debian/Alarmsystem/files/sys_armed.txt"
-#define LINESFILE      "/home/debian/Alarmsystem/files/sys_lines.txt" 
 #define INIFILENAME    "/home/debian/Alarmsystem/files/config.ini"
 #define MAX_NUM       5
 #define MAX_MSG       5
@@ -29,6 +27,7 @@ using namespace std;
 #define XBEE_TIMESW2 5
 #define XBEE_ON_OFF1 6
 #define XBEE_ON_OFF2 7
+
 
 // TYPEDEFS
 

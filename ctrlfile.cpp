@@ -9,7 +9,6 @@
 // NAMESPACES
 using namespace std;
 
-
 CtrlFile::CtrlFile(void)
 {
    armed_from_file = false;
@@ -240,6 +239,7 @@ bool       readval;
       if(retval == -1) return false;
    }
    armed_from_file = readval;
+   armedfile.close();
    return true;
 }
 

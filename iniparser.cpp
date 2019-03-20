@@ -24,6 +24,7 @@ int INIParser::ReadINI(string path)
     string str_line = "";
     string str_root = "";
     vector<ININode> vec_ini;
+    Clear();
     while(getline(in_conf_file, str_line))
     {
         string::size_type left_pos = 0;
