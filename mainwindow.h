@@ -2,9 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDateTime>
+#include <QTimer>
 #include "qlocalsocket.h"
 #include "ctrlfile.h"
-#include <QTimer>
+
 
 #define MAXFIELD    16
 #define MINFIELDLEN  7
@@ -34,8 +36,10 @@ public slots:
     void ArmTimerHandler();
     void SocketConnectedHandler();
     void SocketDisconnectedHandler();
+    void AboutBox();
 private:
     Ui::MainWindow *ui;
+    QDateTime current;
     QTimer *k_timer;
     QTimer *s_timer;
     QTimer *sys_timer;

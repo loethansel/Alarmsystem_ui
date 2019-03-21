@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QHostAddress>
 #include <QNetworkInterface>
+#include <QMessageBox>
 
 static bool connected = false;
 
@@ -24,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
          ui->ipaddress->setText("IP-Address: " + entry.ip().toString());
     }
     // get Date and Time
-    QDateTime current = QDateTime::currentDateTime();
+    current = QDateTime::currentDateTime();
     ui->datetime->setText(current.toString("yyyy-MM-dd hh:mm:ss t"));
     // intervalltimer for configuration update
     k_timer = new QTimer(this);
@@ -47,10 +48,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(arm_timer, SIGNAL(timeout()), this, SLOT(ArmTimerHandler()));
     prearmed = false;
     // push buttons
-    connect(ui->aktiv    ,SIGNAL(clicked()), this, SLOT (SetArmedHandler()));
-    connect(ui->inaktiv  ,SIGNAL(clicked()), this, SLOT (SetDisarmHandler()));
-    connect(ui->clearlog ,SIGNAL(clicked()), this, SLOT (SetClearlogHandler()));
-    connect(ui->xbee     ,SIGNAL(clicked()), this, SLOT (SetXbeeHandler()));
+    connect(ui->aktiv     ,SIGNAL(clicked()), this, SLOT (SetArmedHandler()));
+    connect(ui->inaktiv   ,SIGNAL(clicked()), this, SLOT (SetDisarmHandler()));
+    connect(ui->clearlog  ,SIGNAL(clicked()), this, SLOT (SetClearlogHandler()));
+    connect(ui->xbee      ,SIGNAL(clicked()), this, SLOT (SetXbeeHandler()));
+    connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(AboutBox()));
     connect(ui->actionSet_Button, SIGNAL(triggered()), this, SLOT(ActionSetHandler()));
 }
 
@@ -66,6 +68,13 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::AboutBox()
+{
+    QMessageBox msgBox;
+    msgBox.setText("Alarmsystem by Flugsport-Berlin\n        Author: Ralf Pandel");
+    msgBox.exec();
+}
+
 void MainWindow::SystemTimerHandler()
 {
     if(!prearmed) {
@@ -73,6 +82,9 @@ void MainWindow::SystemTimerHandler()
         if(ctrlfile->armed_from_file) { ui->aktiv->setStyleSheet("background-color: red"); qDebug("read armed!"); }
         else                          { ui->aktiv->setStyleSheet("background-color: ");    qDebug("read disarmed!"); }
     }
+    // get Date and Time
+    current = QDateTime::currentDateTime();
+    ui->datetime->setText(current.toString("yyyy-MM-dd hh:mm:ss t"));
 }
 
 void MainWindow::ArmTimerHandler()
@@ -114,7 +126,7 @@ void MainWindow::SetXbeeHandler()
         // write data request to host application
         socket->flush();
         socket->write("xbeetest\0",9);
-        if(socket->waitForBytesWritten(100000)) qDebug("XBeetest Written!");
+        if(socket->waitForBytesWritten(1000)) qDebug("XBeetest Written!");
     }
     qDebug("set xbeetest!");
 }
