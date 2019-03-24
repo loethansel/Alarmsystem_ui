@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // intervalltimer for configuration update
     k_timer = new QTimer(this);
     connect(k_timer, SIGNAL(timeout()), this, SLOT(ConfigurationTimerHandler())); 
-    k_timer->start(900);
+    k_timer->start(1000);
     // unix pipe to communicate to mainproc
     socket = new QLocalSocket(this);
     connect(socket, SIGNAL(connected())   , this, SLOT(SocketConnectedHandler()));
@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // intervalltimer for system
     sys_timer = new QTimer(this);
     connect(sys_timer, SIGNAL(timeout()), this, SLOT(SystemTimerHandler()));
-    sys_timer->start(1100);
+    sys_timer->start(1000);
     // Armtimer for Alarm
     arm_timer = new QTimer(this);
     connect(arm_timer, SIGNAL(timeout()), this, SLOT(ArmTimerHandler()));
@@ -201,9 +201,9 @@ void MainWindow::SocketTimerHandler()
         // write data request to host application
         socket->flush();
         socket->write("getvalue\0",9);
-        if(socket->waitForBytesWritten(1000)) qDebug("getvalue Written!");
+        if(socket->waitForBytesWritten(100)) qDebug("getvalue Written!");
         // wait for response from host application
-        if(socket->waitForReadyRead(2000)) qDebug("Bytes Read!");
+        if(socket->waitForReadyRead(100)) qDebug("Bytes Read!");
         int len = socket->bytesAvailable();
         socket->read(readbuff,len);
         MessageInterpreter();
